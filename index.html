@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Meme Generator</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>AI Meme Generator</h1>
+
+    <form id="memeForm">
+        <label for="memeType">Select Meme Type:</label>
+        <select id="memeType" required>
+            <option value="">--Please choose an option--</option>
+            <option value="iqBellCurve">IQ Bell Curve</option>
+            <option value="changeMyMind">Change My Mind</option>
+            <option value="distractedBoyfriend">Distracted Boyfriend</option>
+            <option value="areYaWinningSon">Are Ya Winning Son?</option>
+            <option value="rollSafe">Roll Safe (Guy Tapping Head)</option>
+        </select>
+
+        <label for="prompt">Enter your prompt:</label>
+        <input type="text" id="prompt" placeholder="Enter your meme idea here" required>
+
+        <button type="submit">Generate Meme</button>
+    </form>
+
+    <div id="result">
+        <canvas id="memeCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <footer>
+        <p>Built by <a href="https://twitter.com/shabda" target="_blank">twitter.com/shabda</a>. Build AI memes at <a href="https://memes.agiliq.com" target="_blank">memes.agiliq.com</a></p>
+    </footer>
+
+    <script type="module" src="/static/memeconfig.js"></script>
+    <script type="module" src="/static/app.js"></script>
+</body>
+</html>
