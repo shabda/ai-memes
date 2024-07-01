@@ -110,10 +110,32 @@ class RollSafeMeme(BaseMeme):
         """
         return prompt
 
+
+class WomanYellingAtCatMeme(BaseMeme):
+    def generate_prompt(self, input):
+        prompt = f"""
+        Generate text for a 'Woman Yelling at Cat' meme based on: {input}
+
+        Provide JSON with these fields:
+        womanText: What the woman is yelling (usually accusatory or upset)
+        catText: The cat's response (usually calm, confused, or sassy)
+
+        Each field should be a short phrase or sentence (15 words or less).
+        The humor often comes from the contrast between the woman's emotional state and the cat's nonchalant response.
+
+        Example:
+        {{
+            "womanText": "You said you'd be home by 9!",
+            "catText": "I don't even own a watch."
+        }}
+        """
+        return prompt
+
 MEME_TYPES = {
     "iqBellCurve": IqBellCurveMeme(),
     "changeMyMind": ChangeMyMindMeme(),
     "distractedBoyfriend": DistractedBoyfriendMeme(),
     "areYaWinningSon": AreYaWinningSonMeme(),
-    "rollSafe": RollSafeMeme()
+    "rollSafe": RollSafeMeme(),
+    "womanYellingAtCat": WomanYellingAtCatMeme()
 }

@@ -49,6 +49,16 @@ const memeConfig = {
             { key: 'topText', x: 337, y: 50, maxWidth: 600, lineHeight: 35, fontSize: 30, bgColor: 'rgba(255,255,255,0.7)', textColor: 'white' },
             { key: 'bottomText', x: 337, y: 450, maxWidth: 600, lineHeight: 35, fontSize: 30, bgColor: 'rgba(255,255,255,0.7)', textColor: 'white' }
         ]
+    },
+     'womanYellingAtCat': {
+        displayName: 'Woman Yelling at Cat',
+        width: 800,
+        height: 450,
+        imageSrc: '/static/meme-images/woman-yelling-at-cat.png',
+        textPositions: [
+            { key: 'womanText', x: 200, y: 50, maxWidth: 350, lineHeight: 30, fontSize: 24, bgColor: 'rgba(0,0,0,0.5)', textColor: 'white' },
+            { key: 'catText', x: 600, y: 50, maxWidth: 350, lineHeight: 30, fontSize: 24, bgColor: 'rgba(0,0,0,0.5)', textColor: 'white' }
+        ]
     }
 
 };
