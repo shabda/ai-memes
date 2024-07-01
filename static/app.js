@@ -3,6 +3,14 @@ import memeConfig from "./memeconfig.js";
 document.addEventListener('DOMContentLoaded', function() {
     const memeGenerator = new MemeGenerator();
 
+    const memeTypeSelect = document.getElementById('memeType');
+    for (const [key, config] of Object.entries(memeConfig)) {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = config.displayName;
+        memeTypeSelect.appendChild(option);
+    }
+
     document.getElementById('memeForm').addEventListener('submit', async function(e) {
         e.preventDefault();
         const memeType = document.getElementById('memeType').value;

@@ -1,5 +1,6 @@
 const memeConfig = {
     'iqBellCurve': {
+        displayName: 'IQ Bell Curve',
         width: 675,
         height: 499,
         imageSrc: '/static/meme-images/iq-bell-curve.png',
@@ -10,6 +11,7 @@ const memeConfig = {
         ]
     },
     'changeMyMind': {
+        displayName: 'Change My Mind',
         width: 675,
         height: 505,
         imageSrc: '/static/meme-images/change-my-mind.png',
@@ -18,6 +20,7 @@ const memeConfig = {
         ]
     },
     'distractedBoyfriend': {
+        displayName: 'Distracted Boyfriend',
         width: 675,
         height: 500,
         imageSrc: '/static/meme-images/distracted-boyfriend.png',
@@ -28,6 +31,7 @@ const memeConfig = {
         ]
     },
     'areYaWinningSon': {
+        displayName: 'Are Ya Winning Son?',
         width: 675,
         height: 500,
         imageSrc: '/static/meme-images/are-ya-winning-son.png',
@@ -37,6 +41,7 @@ const memeConfig = {
         ]
     },
     'rollSafe': {
+        displayName: 'Roll Safe (Guy Tapping Head)',
         width: 675,
         height: 500,
         imageSrc: '/static/meme-images/roll-safe.png',
