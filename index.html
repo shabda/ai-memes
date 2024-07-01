@@ -7,29 +7,39 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>AI Meme Generator</h1>
+    <header>
+        <h1>AI Meme Generator</h1>
+    </header>
 
-    <form id="memeForm">
-        <label for="memeType">Select Meme Type:</label>
-        <select id="memeType" required>
-            <option value="">--Please choose an option--</option>
-        </select>
+    <main>
+        <section id="memeSelection">
+            <h2>Choose a Meme Template</h2>
+            <div id="memeThumbnails"></div>
+        </section>
 
-        <label for="prompt">Enter your prompt:</label>
-        <input type="text" id="prompt" placeholder="Enter your meme idea here" required>
+        <section id="memeGeneration">
+            <h2>Generate Your Meme</h2>
+            <form id="memeForm">
+                <input type="hidden" id="selectedMemeType" name="memeType">
+                <label for="prompt">Enter your prompt:</label>
+                <textarea id="prompt" name="prompt" rows="3" placeholder="Enter your meme idea here" required></textarea>
+                <button type="submit">Generate Meme</button>
+            </form>
+        </section>
 
-        <button type="submit">Generate Meme</button>
-    </form>
-
-    <div id="result">
-        <canvas id="memeCanvas" width="800" height="600"></canvas>
-    </div>
+        <section id="result">
+            <h2>Your Generated Meme</h2>
+            <div id="memeResult">
+                <canvas id="memeCanvas" width="800" height="600"></canvas>
+            </div>
+            <button id="downloadMeme" style="display:none;">Download Meme</button>
+        </section>
+    </main>
 
     <footer>
         <p>Built by <a href="https://twitter.com/shabda" target="_blank">twitter.com/shabda</a>. Build AI memes at <a href="https://memes.agiliq.com" target="_blank">memes.agiliq.com</a></p>
     </footer>
 
-    <script type="module" src="/static/memeconfig.js"></script>
     <script type="module" src="/static/app.js"></script>
 </body>
 </html>

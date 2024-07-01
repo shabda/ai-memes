@@ -1,4 +1,4 @@
-const memeConfig = {
+const baseMemeConfig = {
     'iqBellCurve': {
         displayName: 'IQ Bell Curve',
         width: 675,
@@ -62,5 +62,19 @@ const memeConfig = {
     }
 
 };
+
+const memeConfig = Object.entries(baseMemeConfig).reduce((acc, [key, config]) => {
+    const imagePath = config.imageSrc.split('/');
+    const imageName = imagePath[imagePath.length - 1];
+    const thumbnailName = imageName.replace('.png', '-thumb.png');
+    const thumbnailPath = [...imagePath.slice(0, -1), thumbnailName].join('/');
+
+    acc[key] = {
+        ...config,
+        thumbnailSrc: thumbnailPath
+    };
+
+    return acc;
+}, {});
 
 export default memeConfig;
