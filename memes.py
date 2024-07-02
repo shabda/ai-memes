@@ -131,11 +131,38 @@ class WomanYellingAtCatMeme(BaseMeme):
         """
         return prompt
 
+
+class TwoButtonsMeme(BaseMeme):
+    def generate_prompt(self, input):
+        prompt = f"""
+        Generate text for a 'Two Buttons' meme based on: {input}
+
+        Provide JSON with these fields:
+        buttonLeft: Text for the left button (usually one option or desire)
+        buttonRight: Text for the right button (usually a conflicting option or desire)
+        person: Description of the person or situation (optional, can be blank)
+
+        Each button field should be a short phrase (5 words or less).
+        The person field, if used, should be a short description (10 words or less).
+
+        Example:
+        {{
+            "buttonLeft": "Sleep early",
+            "buttonRight": "Watch another episode",
+            "person": "Me at 2 AM"
+        }}
+
+        Send only valid JSON as your response, with no additional text or explanation.
+        """
+        return prompt
+
+
 MEME_TYPES = {
     "iqBellCurve": IqBellCurveMeme(),
     "changeMyMind": ChangeMyMindMeme(),
     "distractedBoyfriend": DistractedBoyfriendMeme(),
     "areYaWinningSon": AreYaWinningSonMeme(),
     "rollSafe": RollSafeMeme(),
-    "womanYellingAtCat": WomanYellingAtCatMeme()
+    "womanYellingAtCat": WomanYellingAtCatMeme(),
+    "twoButtons": TwoButtonsMeme()
 }

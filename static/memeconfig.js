@@ -59,6 +59,17 @@ const baseMemeConfig = {
             { key: 'womanText', x: 200, y: 50, maxWidth: 350, lineHeight: 30, fontSize: 24, bgColor: 'rgba(0,0,0,0.5)', textColor: 'white' },
             { key: 'catText', x: 600, y: 50, maxWidth: 350, lineHeight: 30, fontSize: 24, bgColor: 'rgba(0,0,0,0.5)', textColor: 'white' }
         ]
+    },
+    'twoButtons': {
+        displayName: 'Two Buttons',
+        width: 675,
+        height: 500,
+        imageSrc: '/static/meme-images/two-buttons.png',
+        textPositions: [
+            { key: 'buttonLeft', x: 150, y: 100, maxWidth: 140, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)' },
+            { key: 'buttonRight', x: 350, y: 100, maxWidth: 140, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)' },
+            { key: 'person', x: 250, y: 400, maxWidth: 200, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)' }
+        ]
     }
 
 };
