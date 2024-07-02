@@ -104,12 +104,14 @@ button:hover {
     justify-content: center;
     align-items: center;
     min-height: 300px;
+    max-height: 80vh;
+    overflow: auto;
 }
 
 canvas {
     max-width: 100%;
-    height: auto;
-    border: 1px solid #ddd;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 footer {
