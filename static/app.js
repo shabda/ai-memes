@@ -1,45 +1,46 @@
-import memeConfig from "./memeconfig.js";
+// app.js
+
+import { MemeGenerator } from './memeGenerator.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     const memeGenerator = new MemeGenerator();
-    const memeThumbnails = document.getElementById('memeThumbnails');
-    const memeForm = document.getElementById('memeForm');
-    const selectedMemeType = document.getElementById('selectedMemeType');
-    const downloadButton = document.getElementById('downloadMeme');
 
-    // Populate thumbnails
-    for (const [key, config] of Object.entries(memeConfig)) {
-        const thumbnail = document.createElement('img');
-        thumbnail.src = config.thumbnailSrc;
-        thumbnail.alt = config.displayName;
-        thumbnail.className = 'meme-thumbnail';
-        thumbnail.dataset.memeType = key;
-        thumbnail.addEventListener('click', () => selectMeme(key));
-        memeThumbnails.appendChild(thumbnail);
+    // Check for URL parameters and generate meme if they exist
+    const urlParams = new URLSearchParams(window.location.search);
+    const memeType = urlParams.get('type');
+    const memePrompt = urlParams.get('prompt');
+
+    if (memeType && memePrompt) {
+        document.getElementById('selectedMemeType').value = memeType;
+        document.getElementById('prompt').value = memePrompt;
+        generateMemeFromParams(memeType, memePrompt);
     }
 
-    function selectMeme(memeType) {
-        document.querySelectorAll('.meme-thumbnail').forEach(thumb => {
-            thumb.classList.remove('selected');
-        });
-        document.querySelector(`[data-meme-type="${memeType}"]`).classList.add('selected');
-        selectedMemeType.value = memeType;
-    }
+    // Populate the meme type selection
+    populateMemeSelection();
 
-    memeForm.addEventListener('submit', async function(e) {
+    document.getElementById('memeForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        const memeType = selectedMemeType.value;
+        const memeType = document.getElementById('selectedMemeType').value;
         const prompt = document.getElementById('prompt').value;
 
-        if (!memeType) {
-            alert('Please select a meme type');
-            return;
-        }
+        // Update URL with new parameters
+        const newUrl = `${window.location.pathname}?type=${encodeURIComponent(memeType)}&prompt=${encodeURIComponent(prompt)}`;
+        window.history.pushState({}, '', newUrl);
 
-        const loadingMessage = document.createElement('p');
-        loadingMessage.textContent = 'Generating meme...';
-        memeForm.appendChild(loadingMessage);
+        await generateMemeFromParams(memeType, prompt);
+    });
 
+    document.getElementById('shareMeme').addEventListener('click', function() {
+        const shareUrl = window.location.href;
+        navigator.clipboard.writeText(shareUrl).then(function() {
+            alert('Share link copied to clipboard!');
+        }, function(err) {
+            console.error('Could not copy text: ', err);
+        });
+    });
+
+    async function generateMemeFromParams(memeType, prompt) {
         try {
             const response = await fetch('/api/generate-meme', {
                 method: 'POST',
@@ -51,20 +52,29 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const data = await response.json();
             memeGenerator.generateMeme(memeType, data);
-            downloadButton.style.display = 'block';
         } catch (error) {
-            alert(`Error: ${error.message}`);
-        } finally {
-            loadingMessage.remove();
+            console.error('Error generating meme:', error);
         }
-    });
+    }
 
-    downloadButton.addEventListener('click', function() {
-        const canvas = document.getElementById('memeCanvas');
-        const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-        const link = document.createElement('a');
-        link.download = 'generated-meme.png';
-        link.href = image;
-        link.click();
-    });
+    function populateMemeSelection() {
+        const memeThumbnails = document.getElementById('memeThumbnails');
+        for (const [key, config] of Object.entries(memeGenerator.memeTypes)) {
+            const thumbnail = document.createElement('img');
+            thumbnail.src = config.thumbnailSrc;
+            thumbnail.alt = config.displayName;
+            thumbnail.className = 'meme-thumbnail';
+            thumbnail.dataset.memeType = key;
+            thumbnail.addEventListener('click', () => selectMeme(key));
+            memeThumbnails.appendChild(thumbnail);
+        }
+    }
+
+    function selectMeme(memeType) {
+        document.querySelectorAll('.meme-thumbnail').forEach(thumb => {
+            thumb.classList.remove('selected');
+        });
+        document.querySelector(`[data-meme-type="${memeType}"]`).classList.add('selected');
+        document.getElementById('selectedMemeType').value = memeType;
+    }
 });

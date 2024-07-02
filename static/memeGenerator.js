@@ -33,13 +33,13 @@ export class MemeGenerator {
     addText(textPositions, data) {
         textPositions.forEach(pos => {
             this.ctx.font = `${pos.fontSize}px Arial`;
-            this.ctx.fillStyle = pos.textColor || 'black';
+            this.ctx.fillStyle = pos.textColor || 'black';  // Set default to black if not specified
             this.ctx.textAlign = 'center';
-            this.wrapText(data[pos.key], pos.x, pos.y, pos.maxWidth, pos.lineHeight, pos.bgColor);
+            this.wrapText(data[pos.key], pos.x, pos.y, pos.maxWidth, pos.lineHeight, pos.bgColor, pos.textColor || 'black');
         });
     }
 
-    wrapText(text, x, y, maxWidth, lineHeight, bgColor) {
+    wrapText(text, x, y, maxWidth, lineHeight, bgColor, textColor) {
         const words = text.split(' ');
         let line = '';
         let lines = [];
@@ -65,7 +65,7 @@ export class MemeGenerator {
             this.ctx.fillRect(x - bgWidth / 2, y - lineHeight, bgWidth, bgHeight);
         }
 
-        this.ctx.fillStyle = this.ctx.fillStyle;
+        this.ctx.fillStyle = textColor;  // Use the passed text color
         lines.forEach((line, index) => {
             this.ctx.fillText(line, x, y + index * lineHeight);
         });

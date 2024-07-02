@@ -66,9 +66,9 @@ const baseMemeConfig = {
         height: 500,
         imageSrc: '/static/meme-images/two-buttons.png',
         textPositions: [
-            { key: 'buttonLeft', x: 150, y: 100, maxWidth: 140, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)' },
-            { key: 'buttonRight', x: 350, y: 100, maxWidth: 140, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)' },
-            { key: 'person', x: 250, y: 400, maxWidth: 200, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)' }
+            { key: 'buttonLeft', x: 150, y: 100, maxWidth: 140, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)', textColor: 'black' },
+            { key: 'buttonRight', x: 350, y: 100, maxWidth: 140, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)', textColor: 'black'  },
+            { key: 'person', x: 250, y: 400, maxWidth: 200, lineHeight: 25, fontSize: 18, bgColor: 'rgba(255,255,255,0.7)', textColor: 'black'  }
         ]
     }
 
